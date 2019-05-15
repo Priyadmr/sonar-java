@@ -44,6 +44,7 @@ import org.sonar.java.checks.naming.MethodNameSameAsClassCheck;
 import org.sonar.java.checks.naming.MethodNamedEqualsCheck;
 import org.sonar.java.checks.naming.MethodNamedHashcodeOrEqualCheck;
 import org.sonar.java.checks.security.AESAlgorithmCheck;
+import org.sonar.java.checks.security.AndroidExternalStorageCheck;
 import org.sonar.java.checks.security.CipherBlockChainingCheck;
 import org.sonar.java.checks.security.CommandLineArgumentsCheck;
 import org.sonar.java.checks.security.ControllingPermissionsCheck;
@@ -657,7 +658,9 @@ public final class CheckList {
       SynchronizedOverrideCheck.class,
       MissingBeanValidationCheck.class,
       UseSwitchExpressionCheck.class,
-      EnvVariablesHotspotCheck.class);
+      EnvVariablesHotspotCheck.class,
+      AndroidExternalStorageCheck.class
+    );
   }
 
   public static List<Class<? extends DebugCheck>> getDebugChecks() {
