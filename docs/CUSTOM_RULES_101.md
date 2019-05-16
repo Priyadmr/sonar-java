@@ -24,6 +24,7 @@ This document is an introduction to custom rule writing for the SonarQube Java A
   * [How to define rule parameters](#how-to-define-rule-parameters)
   * [How to test sources requiring external binaries](#how-to-test-sources-requiring-external-binaries)
   * [How to test precise issue location](#how-to-test-precise-issue-location)
+  * [How to test the Source Version in a rule](#how-to-test-the-source-version-in-a-rule)
 * [References](#references)
 
 ## Getting started
@@ -502,6 +503,22 @@ This can be achieved using the special keywords `sc` (start-column) and `ec` (en
 
 ```java
 public String updateOrder(Order order) { // Noncompliant [[sc=27;ec=32]] {{Don't use Order here because it's an @Entity}}
+```
+
+### How to test the Source Version in a rule
+
+Starting from **Java Plugin API 3.7** (Oct 2015), the java source version can be accessed directly when writing custom rules. This can be achieved by simply calling the method `getJavaVersion()` from the context. Note that the method will return null only when the property is not set. Similarily, it is possible to specify to the verifier a version of Java to be considered as runtime execution, calling method `verify(String filename, JavaFileScanner check, int javaVersion)`.
+
+```java
+@Beta
+public interface JavaFileScannerContext {
+
+  // ...
+  
+  @Nullable
+  Integer getJavaVersion();
+  
+}
 ```
 
 ## References
